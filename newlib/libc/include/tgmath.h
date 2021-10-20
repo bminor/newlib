@@ -80,15 +80,15 @@
 	 __tg_type3(__e1, __e2, __e3, __typeof__(_Complex_I)))
 
 #if defined (_LDBL_EQ_DBL) || defined (__CYGWIN__)
+#define	__tg_impl_simple(__x, __y, __z, __fn, __fnf, __fnl, ...)	\
+	(__tg_type_corr(__x, __y, __z, double) || __tg_integer(__x, __y, __z)) \
+		? __fn(__VA_ARGS__) : __fnf(__VA_ARGS__)
+#else
 #define	__tg_impl_simple(x, y, z, fn, fnf, fnl, ...)			\
 	__builtin_choose_expr(__tg_type_corr(x, y, z, long double),	\
 	    fnl(__VA_ARGS__), __builtin_choose_expr(			\
 		__tg_type_corr(x, y, z, double) || __tg_integer(x, y, z),\
 		fn(__VA_ARGS__), fnf(__VA_ARGS__)))
-#else
-#define	__tg_impl_simple(__x, __y, __z, __fn, __fnf, __fnl, ...)	\
-	(__tg_type_corr(__x, __y, __z, double) || __tg_integer(__x, __y, __z)) \
-		? __fn(__VA_ARGS__) : __fnf(__VA_ARGS__)
 #endif
 
 #define	__tg_impl_full(__x, __y, __z, __fn, __fnf, __fnl, __cfn, __cfnf, __cfnl, ...)	\
