@@ -1,0 +1,3 @@
+
+Hello, I want to port some string functions of newlib to the nuttx community. I would like to ask what the copyright of this part of the code is? Can this patch be merged?
+https://github.com/apache/nuttx/pull/13180
